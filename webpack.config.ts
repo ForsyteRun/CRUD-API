@@ -10,7 +10,7 @@ module.exports = {
   mode,
   target,
   devtool,
-  entry: path.join(__dirname, "src", "index.js"), //enter point
+  entry: path.join(__dirname, "index.js"), //enter point
   output: {
     // output point
     path: path.join(__dirname, "dist"),

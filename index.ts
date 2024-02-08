@@ -1,6 +1,6 @@
-import http from "node:http";
+import * as http from "http";
+import * as dotenv from "dotenv";
 
-import dotenv from "dotenv";
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -11,11 +11,11 @@ const server = http.createServer((req, res) => {
   });
   res.end(
     JSON.stringify({
-      data: "Hello World!",
+      data: "Hellosscssssss",
     })
   );
 });
 
 server.listen(port, () => {
-  console.log("Server is running");
+  console.log(`Server is running on port ${port}`);
 });

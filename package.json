@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
-    "start": "ts-node --esm ./index.js"
+    "start": "nodemon --watch index.ts --exec ts-node index.ts"
   },
   "author": "",
   "license": "ISC",
