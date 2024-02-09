@@ -130,12 +130,12 @@ const server = http.createServer(
           res.end(JSON.stringify(userToRemove));
         }
       } else {
-        res.writeHead(404, { "Content-Type": "text/plain" });
-        res.end("404 Not Found");
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end({ msg: "404 Not Found" });
       }
     } catch {
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("server side error");
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end({ msg: "server side error" });
     }
   }
 );
