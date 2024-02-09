@@ -59,10 +59,10 @@ const server = http.createServer(
 
         if (!isValidUUID(id)) {
           res.writeHead(400, { "Content-Type": "application/json" });
-          res.end("Inccorect user id");
+          res.end(JSON.stringify({ msg: "Inccorect user id" }));
         } else if (!userById) {
           res.writeHead(404, { "Content-Type": "application/json" });
-          res.end("404 Not Found");
+          res.end(JSON.stringify({ msg: "404 Not Found" }));
         } else {
           res.writeHead(200, { "Content-Type": "application/json" });
           res.end(JSON.stringify(userById));
@@ -91,10 +91,10 @@ const server = http.createServer(
 
             if (!isValidUUID(id)) {
               res.writeHead(400, { "Content-Type": "application/json" });
-              res.end("Inccorect user id");
+              res.end(JSON.stringify({ msg: "Inccorect user id" }));
             } else if (!userById) {
               res.writeHead(404, { "Content-Type": "application/json" });
-              res.end("404 Not Found");
+              res.end(JSON.stringify({ msg: "404 Not Found" }));
             } else {
               const modifyUser = { ...userById, ...data };
               const filterUsers = users.filter((user: IUser) => user.id !== id);
@@ -120,10 +120,10 @@ const server = http.createServer(
 
         if (!isValidUUID(id)) {
           res.writeHead(400, { "Content-Type": "application/json" });
-          res.end("Inccorect user id");
+          res.end(JSON.stringify({ msg: "Inccorect user id" }));
         } else if (!userToRemove) {
           res.writeHead(404, { "Content-Type": "application/json" });
-          res.end("404 Not Found");
+          res.end(JSON.stringify({ msg: "404 Not Found" }));
         } else {
           setUsers(modifyUsers);
           res.writeHead(204, { "Content-Type": "application/json" });
@@ -131,11 +131,11 @@ const server = http.createServer(
         }
       } else {
         res.writeHead(404, { "Content-Type": "application/json" });
-        res.end({ msg: "404 Not Found" });
+        res.end(JSON.stringify({ msg: "404 Not Found" }));
       }
     } catch {
       res.writeHead(500, { "Content-Type": "application/json" });
-      res.end({ msg: "server side error" });
+      res.end(JSON.stringify({ msg: "server side error" }));
     }
   }
 );
