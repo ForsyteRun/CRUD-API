@@ -1,10 +1,13 @@
 {
-  "name": "crud-api",
+  "name": "CRUD node.js",
   "version": "1.0.0",
-  "description": "",
+  "description": "My webpack project",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon --watch index.ts --exec ts-node index.ts"
+    "start1:dev": "ts-node-dev index.ts",
+    "build": "webpack",
+    "start:dev": "cross-env NODE_ENV=development webpack",
+    "run:dev": "cross-env NODE_ENV=development nodemon build/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,13 +18,18 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.8",
+    "@webpack-cli/generators": "^3.0.7",
     "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
     "prettier": "^3.2.5",
+    "ts-loader": "^9.4.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3",
     "webpack": "^5.90.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-node-externals": "^3.0.0",
+    "webpack-shell-plugin-next": "^2.3.1"
   }
 }

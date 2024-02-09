@@ -1,17 +1,19 @@
 import * as http from "http";
 import * as dotenv from "dotenv";
 import { v4 as uuidv4, validate as isValidUUID } from "uuid";
-import { getUsers, setUsers, users } from "./db";
-import url from "url";
+import { getUsers, setUsers } from "./db";
+import * as url from "url";
 import { IUser } from "./types";
 
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 const server = http.createServer(
   (req: http.IncomingMessage, res: http.ServerResponse) => {
     try {
+      const users = getUsers();
+
       if (req.method === "GET" && req.url === "/users") {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(users));
