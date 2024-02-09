@@ -4,10 +4,8 @@
   "description": "My webpack project",
   "main": "index.ts",
   "scripts": {
-    "start1:dev": "ts-node-dev index.ts",
-    "build": "webpack",
-    "start:dev": "cross-env NODE_ENV=development webpack",
-    "run:dev": "cross-env NODE_ENV=development nodemon build/index.js"
+    "start:dev": "ts-node-dev index.ts",
+    "start:prod": "cross-env NODE_ENV=production webpack && ts-node build/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +27,6 @@
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
-    "webpack-node-externals": "^3.0.0",
-    "webpack-shell-plugin-next": "^2.3.1"
+    "webpack-node-externals": "^3.0.0"
   }
 }
