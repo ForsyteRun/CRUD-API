@@ -96,7 +96,7 @@ const server = http.createServer(
               res.writeHead(404, { "Content-Type": "application/json" });
               res.end("404 Not Found");
             } else {
-              const modifyUser = { ...userById, ...data, id: uuidv4() };
+              const modifyUser = { ...userById, ...data };
               const filterUsers = users.filter((user: IUser) => user.id !== id);
 
               const modifyUsers = [...filterUsers, modifyUser];

@@ -1,6 +1,6 @@
 import { IUser } from "./types";
 
-export let users: IUser[] = [{ id: "s", age: 55, hobbies: [], username: "gj" }];
+export let users: IUser[] = [];
 
 function getUsers() {
   return users;
