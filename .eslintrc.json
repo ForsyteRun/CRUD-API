@@ -1,0 +1,25 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": "standard-with-typescript",
+  "overrides": [
+    {
+      "files": ["src/index.ts"],
+      "rules": {
+        "node/no-deprecated-api": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["src/**/*.test.ts"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "node/no-deprecated-api": "off"
+  }
+}
