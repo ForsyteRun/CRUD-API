@@ -11,10 +11,10 @@ Node.js (v20 or above)
 
 ## Features
 
-Create: Add new user
-Read: View details of existing user
-Update: Modify details of existing user
-Delete: Remove user
+- Create: Add new user
+- Read: View details of existing user
+- Update: Modify details of existing user
+- Delete: Remove user
 
 ## Set up and run project locally
 
