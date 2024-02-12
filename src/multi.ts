@@ -6,7 +6,7 @@ import process from "node:process";
 import * as url from "url";
 import { validate as isValidUUID, v4 as uuidv4 } from "uuid";
 // // import { getUsers, setUsers } from "./db";
-import { IUser } from "./types";
+import { IUser } from "../types";
 
 dotenv.config();
 

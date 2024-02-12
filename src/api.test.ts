@@ -16,18 +16,14 @@ const modifyUser = {
 const request = supertest.agent(server);
 
 describe("scenario 1", function () {
-  // afterAll((done: jest.DoneCallback) => {
-  //   server.close(done);
-  // });
-
-  it("should get empty []", async () => {
+  it("should GET empty []", async () => {
     const res = await request.get("/users");
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual([]);
   });
 
-  it("should post user", async () => {
+  it("should POST user", async () => {
     const res = await request.post("/users").send(userData);
 
     expect(res.status).toBe(201);
@@ -52,12 +48,6 @@ describe("scenario 1", function () {
   });
 
   it("should PUT user", async () => {
-    // const modifyUser = {
-    //   username: "IvanDorn",
-    //   age: 110,
-    //   hobbies: ["reading"],
-    // };
-
     const postResponse = await request.post("/users").send(userData);
     const { id } = postResponse.body;
 
@@ -77,12 +67,6 @@ describe("scenario 1", function () {
   });
 
   it("should GET removed user", async () => {
-    // const userData = {
-    //   username: "JohnDoe",
-    //   age: 30,
-    //   hobbies: ["reading", "gaming"],
-    // };
-
     const postResponse = await request.post("/users").send(userData);
     const { id } = postResponse.body;
 
@@ -99,7 +83,7 @@ describe("scenario 1", function () {
 });
 
 describe("scenario 2", function () {
-  it("should get two users", async () => {
+  it("should GET 3 users", async () => {
     const res = await request.get("/users");
 
     expect(res.status).toBe(200);
@@ -164,7 +148,7 @@ describe("scenario 3", function () {
     server.close(done);
   });
 
-  it("should get two users", async () => {
+  it("should GET status code 200", async () => {
     const res = await request.get("/users");
 
     expect(res.status).toBe(200);

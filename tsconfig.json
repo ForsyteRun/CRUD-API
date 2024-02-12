@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "module": "ESNext",
     "target": "ESNext",
-    "allowJs": true,
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
+    "lib": [],
+    "module": "NodeNext",
     "rootDir": "./",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "outDir": "./build",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
   },
-  "files": ["./src/index.ts"]
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
 }

@@ -4,7 +4,7 @@
   "description": "My webpack project",
   "main": "index.ts",
   "scripts": {
-    "start:dev": "ts-node-dev index.ts",
+    "start:dev":  "ts-node-dev ./src/index.ts",
     "start:prod": "cross-env NODE_ENV=production webpack && ts-node build/index.js",
     "start:multi": "ts-node-dev multi.ts",
     "test": "jest"
