@@ -1,43 +1,43 @@
-import supertest from "supertest";
-import { server } from "./index";
+import supertest from 'supertest';
+import { server } from './index';
 
 const userData = {
-  username: "JohnDoe",
+  username: 'JohnDoe',
   age: 30,
-  hobbies: ["reading", "gaming"],
+  hobbies: ['reading', 'gaming'],
 };
 
 const modifyUser = {
-  username: "IvanDorn",
+  username: 'IvanDorn',
   age: 110,
-  hobbies: ["reading"],
+  hobbies: ['reading'],
 };
 
 const request = supertest.agent(server);
 
-describe("scenario 1", function () {
-  it("should GET empty []", async () => {
-    const res = await request.get("/users");
+describe('scenario 1', function () {
+  it('should GET empty []', async () => {
+    const res = await request.get('/users');
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual([]);
   });
 
-  it("should POST user", async () => {
-    const res = await request.post("/users").send(userData);
+  it('should POST user', async () => {
+    const res = await request.post('/users').send(userData);
 
     expect(res.status).toBe(201);
     expect(res.body).toEqual({ ...userData, id: expect.any(String) });
   });
 
-  it("should GET user by id", async () => {
+  it('should GET user by id', async () => {
     const userData = {
-      username: "JohnDoe",
+      username: 'JohnDoe',
       age: 30,
-      hobbies: ["reading", "gaming"],
+      hobbies: ['reading', 'gaming'],
     };
 
-    const postResponse = await request.post("/users").send(userData);
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const getResponse = await request.get(`/users/${id}`);
@@ -47,8 +47,8 @@ describe("scenario 1", function () {
     expect(getResponse.body).toEqual(expect.objectContaining(userData));
   });
 
-  it("should PUT user", async () => {
-    const postResponse = await request.post("/users").send(userData);
+  it('should PUT user', async () => {
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const putResponse = await request.put(`/users/${id}`).send(modifyUser);
@@ -57,8 +57,8 @@ describe("scenario 1", function () {
     expect(putResponse.body).toEqual({ ...modifyUser, id: expect.any(String) });
   });
 
-  it("should DELETE user by id", async () => {
-    const postResponse = await request.post("/users").send(userData);
+  it('should DELETE user by id', async () => {
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const getResponse = await request.delete(`/users/${id}`);
@@ -66,8 +66,8 @@ describe("scenario 1", function () {
     expect(getResponse.status).toBe(204);
   });
 
-  it("should GET removed user", async () => {
-    const postResponse = await request.post("/users").send(userData);
+  it('should GET removed user', async () => {
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     await request.delete(`/users/${id}`);
@@ -77,14 +77,14 @@ describe("scenario 1", function () {
     expect(getResponse.status).toBe(404);
 
     expect(getResponse.body).toEqual({
-      msg: "404 Not Found",
+      msg: '404 Not Found',
     });
   });
 });
 
-describe("scenario 2", function () {
-  it("should GET 3 users", async () => {
-    const res = await request.get("/users");
+describe('scenario 2', function () {
+  it('should GET 3 users', async () => {
+    const res = await request.get('/users');
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual([
@@ -94,14 +94,14 @@ describe("scenario 2", function () {
     ]);
   });
 
-  it("should POST & PUT user", async () => {
+  it('should POST & PUT user', async () => {
     const modifyUser = {
-      username: "IvanDorn",
+      username: 'IvanDorn',
       age: 110,
-      hobbies: ["reading"],
+      hobbies: ['reading'],
     };
 
-    const postResponse = await request.post("/users").send(userData);
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const putResponse = await request.put(`/users/${id}`).send(modifyUser);
@@ -110,14 +110,14 @@ describe("scenario 2", function () {
     expect(putResponse.body).toEqual({ ...modifyUser, id: expect.any(String) });
   });
 
-  it("should GET user by id", async () => {
+  it('should GET user by id', async () => {
     const userData = {
-      username: "JohnDoe",
+      username: 'JohnDoe',
       age: 30,
-      hobbies: ["reading", "gaming"],
+      hobbies: ['reading', 'gaming'],
     };
 
-    const postResponse = await request.post("/users").send(userData);
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const getResponse = await request.get(`/users/${id}`);
@@ -127,14 +127,14 @@ describe("scenario 2", function () {
     expect(getResponse.body).toEqual(expect.objectContaining(userData));
   });
 
-  it("should DELETE user by id", async () => {
+  it('should DELETE user by id', async () => {
     const userData = {
-      username: "JohnDoe",
+      username: 'JohnDoe',
       age: 30,
-      hobbies: ["reading", "gaming"],
+      hobbies: ['reading', 'gaming'],
     };
 
-    const postResponse = await request.post("/users").send(userData);
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const getResponse = await request.delete(`/users/${id}`);
@@ -143,19 +143,19 @@ describe("scenario 2", function () {
   });
 });
 
-describe("scenario 3", function () {
+describe('scenario 3', function () {
   afterAll((done: jest.DoneCallback) => {
     server.close(done);
   });
 
-  it("should GET status code 200", async () => {
-    const res = await request.get("/users");
+  it('should GET status code 200', async () => {
+    const res = await request.get('/users');
 
     expect(res.status).toBe(200);
   });
 
-  it("should POST & PUT user", async () => {
-    const postResponse = await request.post("/users").send(userData);
+  it('should POST & PUT user', async () => {
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const putResponse = await request.put(`/users/${id}`).send(modifyUser);
@@ -164,14 +164,14 @@ describe("scenario 3", function () {
     expect(putResponse.body).toEqual({ ...modifyUser, id: expect.any(String) });
   });
 
-  it("should DELETE user by id", async () => {
+  it('should DELETE user by id', async () => {
     const userData = {
-      username: "JohnDoe",
+      username: 'JohnDoe',
       age: 30,
-      hobbies: ["reading", "gaming"],
+      hobbies: ['reading', 'gaming'],
     };
 
-    const postResponse = await request.post("/users").send(userData);
+    const postResponse = await request.post('/users').send(userData);
     const { id } = postResponse.body;
 
     const getResponse = await request.delete(`/users/${id}`);

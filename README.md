@@ -5,6 +5,7 @@
 This is a simple CRUD (Create, Read, Update, Delete) application built with pure Node.js. It allows you to perform basic CRUD operations on users.
 
 ## Before running
+
 Before running this application, ensure you have the following installed:
 
 Node.js (v20 or above)
@@ -30,6 +31,7 @@ With Yarn:
 ```
 yarn install
 ```
+
 ## Scripts usage
 
 ### Common application scripts
@@ -42,9 +44,8 @@ yarn install
 ### ESLint scripts
 
 - `lint`: runs ESLint to check code for issues.
-- `lint:fix`: runs ESLint to check code and fix autofixable issues.
+- `lint:fix`: runs ESLint to fix code issues.
 
 ### Prettier scripts
 
-- `format:check`: runs prettier to check code formatting.
 - `format:fix`: runs prettier to check and auto format code.

@@ -1,9 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
-const {
-  NODE_ENV = 'production',
-} = process.env;
+const { NODE_ENV = 'production' } = process.env;
 
 module.exports = {
   entry: './src/index.ts',
@@ -13,7 +11,7 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js'
+    filename: 'index.js',
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -22,10 +20,8 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: [
-          'ts-loader'
-        ]
-      }
-    ]
-  }
-}
+        use: ['ts-loader'],
+      },
+    ],
+  },
+};

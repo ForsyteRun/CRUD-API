@@ -1,26 +1,26 @@
-import * as dotenv from "dotenv";
-import cluster from "node:cluster";
-import http from "node:http";
-import { availableParallelism } from "node:os";
-import process from "node:process";
-import * as url from "url";
-import { validate as isValidUUID, v4 as uuidv4 } from "uuid";
+import * as dotenv from 'dotenv';
+import cluster from 'node:cluster';
+import http from 'node:http';
+import { availableParallelism } from 'node:os';
+import process from 'node:process';
+import * as url from 'url';
+import { validate as isValidUUID, v4 as uuidv4 } from 'uuid';
 // // import { getUsers, setUsers } from "./db";
-import { IUser } from "../types";
+import { type IUser } from '../types';
 
 dotenv.config();
 
 const initData: unknown[] = [];
 
-let port = process.env.PORT;
+const port = process.env.PORT;
 const counter = port ? +port : 3000;
 
 if (cluster.isPrimary) {
   for (let i = 0; i < availableParallelism() - 1; i++) {
     const worker = cluster.fork({ WORKER_PORT: counter + i });
 
-    worker.on("message", function (msg) {
-      console.log("Worker to master: ", msg);
+    worker.on('message', function (msg) {
+      console.log('Worker to master: ', msg);
 
       initData.push(msg.value?.data);
 
@@ -43,7 +43,7 @@ if (cluster.isPrimary) {
   //   }
   // });
 
-  cluster.on("exit", (worker) => {
+  cluster.on('exit', (worker) => {
     console.log(`Worker ${worker.process.pid} died`);
   });
 } else {
@@ -67,7 +67,7 @@ if (cluster.isPrimary) {
       // });
 
       try {
-        if (req.method === "GET" && req.url === "/users") {
+        if (req.method === 'GET' && req.url === '/users') {
           // process.on("message", function (msg: Array<IUser | null>) {
           //   try {
           //     data = msg;
@@ -81,7 +81,7 @@ if (cluster.isPrimary) {
           //   console.log(data, "exit");
           // });
 
-          process.on("message", function (msg: Array<IUser | null>) {
+          process.on('message', function (msg: Array<IUser | null>) {
             try {
               data = msg;
             } catch (error) {
@@ -89,16 +89,16 @@ if (cluster.isPrimary) {
             }
 
             // const rmEmptyData = msg.filter((n) => n);
-            console.log("Master to worker:", data, 77);
+            console.log('Master to worker:', data, 77);
           });
 
-          res.writeHead(200, { "Content-Type": "application/json" });
+          res.writeHead(200, { 'Content-Type': 'application/json' });
 
           res.end(JSON.stringify({ users: data }));
-        } else if (req.method === "POST" && req.url === "/users") {
-          let body = "";
+        } else if (req.method === 'POST' && req.url === '/users') {
+          let body = '';
 
-          req.on("data", (chunk) => {
+          req.on('data', (chunk) => {
             try {
               body += chunk.toString();
             } catch (error) {
@@ -106,7 +106,7 @@ if (cluster.isPrimary) {
             }
           });
 
-          req.on("end", () => {
+          req.on('end', () => {
             try {
               const { username, age, hobbies }: IUser = JSON.parse(body);
 
@@ -114,13 +114,13 @@ if (cluster.isPrimary) {
 
               const newUser: IUser = {
                 id: uuidv4(),
-                username: username,
-                age: age,
-                hobbies: hobbies,
+                username,
+                age,
+                hobbies,
               };
 
               cluster.worker?.send?.({
-                type: "updateData",
+                type: 'updateData',
                 value: { data: newUser },
               });
 
@@ -134,8 +134,8 @@ if (cluster.isPrimary) {
           });
         }
       } catch {
-        res.writeHead(500, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ msg: "server side error" }));
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ msg: 'server side error' }));
       }
     }
   );
@@ -144,7 +144,7 @@ if (cluster.isPrimary) {
     console.log(`Server is running on port ${port}`);
   });
 
-  process.on("message", function (msg: Array<IUser | null>) {
+  process.on('message', function (msg: Array<IUser | null>) {
     try {
       data = msg;
     } catch (error) {
@@ -152,6 +152,6 @@ if (cluster.isPrimary) {
     }
 
     // const rmEmptyData = msg.filter((n) => n);
-    console.log("Master to worker:", childData, 77);
+    console.log('Master to worker:', childData, 77);
   });
 }

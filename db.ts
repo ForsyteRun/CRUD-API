@@ -1,12 +1,12 @@
-import { IUser } from "./types";
+import { type IUser } from './types';
 
 export let users: IUser[] = [];
 
-function getUsers() {
+function getUsers(): IUser[] {
   return users;
 }
 
-function setUsers(updatedUsers: IUser[]) {
+function setUsers(updatedUsers: IUser[]): void {
   users = updatedUsers;
 }
 
